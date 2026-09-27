@@ -1,0 +1,262 @@
+/* =======================================================
+   VARIABLES DE DISEÑO
+   Cambiá acá los colores y fuentes generales del test.
+   ======================================================= */
+:root {
+  --tinta: #0c1a30;         /* fondo principal, azul oscuro */
+  --tinta-suave: #142440;   /* paneles sobre el fondo */
+  --papel: #f6f4ef;         /* color de las tarjetas, tipo papel */
+  --papel-linea: #e4e0d5;   /* líneas divisorias sobre el papel */
+  --rojo-senal: #7c1f2e;    /* acento principal: progreso, botón, hover (rojo bordo) */
+  --azul-acento: #8ab4e0;      /* acento azul claro: para usar sobre el fondo oscuro */
+  --azul-acento-oscuro: #2f5a86; /* mismo azul, más oscuro: para usar sobre las tarjetas de papel (más contraste) */
+  --texto-tinta: #10131f;
+  --texto-claro: #ffffff;
+  --texto-atenuado: #a9b4c9;
+
+  --fuente-titular: 'Archivo Black', 'Arial Black', sans-serif;
+  --fuente-texto: 'Inter', system-ui, sans-serif;
+
+  --radio-tarjeta: 20px;
+  --sombra-papel: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--tinta);
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(124, 31, 46, 0.25), transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(138, 180, 224, 0.14), transparent 45%);
+  font-family: var(--fuente-texto);
+  color: var(--texto-claro);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------- Layout general ------- */
+.contenedor {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+}
+
+.pantalla {
+  display: none;
+  width: 100%;
+  max-width: 620px;
+  text-align: center;
+  animation: aparecer 0.5s ease;
+}
+.pantalla.activa { display: block; }
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.etiqueta {
+  font-weight: 700;
+  color: var(--azul-acento);
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+
+/* Dentro de una tarjeta de papel el fondo es claro, así que usamos el azul
+   más oscuro para que "Tu resultado" siga siendo legible. */
+.tarjeta-resultado .etiqueta {
+  color: var(--azul-acento-oscuro);
+}
+
+/* ------- Pantalla de inicio ------- */
+.titulo-hero {
+  font-family: var(--fuente-titular);
+  font-size: clamp(32px, 6vw, 52px);
+  line-height: 1.08;
+  margin: 0 0 24px;
+  color: var(--texto-claro);
+}
+
+.bajada {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--texto-atenuado);
+  max-width: 480px;
+  margin: 0 auto 36px;
+}
+
+/* ------- Botones ------- */
+.boton {
+  border: none;
+  cursor: pointer;
+  font-family: var(--fuente-texto);
+  font-weight: 700;
+  font-size: 17px;
+  padding: 16px 36px;
+  border-radius: 100px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+.boton-primario {
+  background: var(--rojo-senal);
+  color: var(--texto-claro);
+  box-shadow: 0 10px 25px rgba(124, 31, 46, 0.4);
+}
+.boton-primario:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(124, 31, 46, 0.5);
+}
+.boton-secundario {
+  background: transparent;
+  color: var(--azul-acento);
+  border: 2px solid var(--azul-acento);
+  padding: 14px 32px;
+}
+.boton-secundario:hover {
+  background: var(--azul-acento);
+  color: var(--tinta);
+}
+
+/* ------- Barra de progreso ------- */
+.barra-progreso-wrap { margin-bottom: 28px; }
+
+.barra-progreso {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.barra-progreso-relleno {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--rojo-senal), var(--azul-acento));
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+.progreso-texto {
+  margin: 10px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--texto-atenuado);
+}
+
+/* ------- Tarjeta de pregunta (estilo "papel") ------- */
+.tarjeta-pregunta {
+  background: var(--papel);
+  color: var(--texto-tinta);
+  border-radius: var(--radio-tarjeta);
+  padding: 40px 32px;
+  box-shadow: var(--sombra-papel);
+  text-align: left;
+}
+
+.pregunta-texto {
+  font-family: var(--fuente-texto);
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 800;
+  line-height: 1.35;
+  margin: 0 0 28px;
+}
+
+.opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.opcion {
+  text-align: left;
+  background: #fff;
+  border: 2px solid var(--papel-linea);
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-family: var(--fuente-texto);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--texto-tinta);
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.1s ease, background 0.15s ease;
+}
+.opcion:hover {
+  border-color: var(--rojo-senal);
+  transform: translateX(4px);
+}
+.opcion:focus-visible {
+  outline: 3px solid var(--azul-acento-oscuro);
+  outline-offset: 2px;
+}
+.opcion.seleccionada {
+  border-color: var(--rojo-senal);
+  background: #fdf1ef;
+}
+
+/* ------- Pantalla de resultado ------- */
+.tarjeta-resultado {
+  background: var(--papel);
+  color: var(--texto-tinta);
+  border-radius: var(--radio-tarjeta);
+  padding: 44px 32px;
+  box-shadow: var(--sombra-papel);
+  margin-bottom: 24px;
+}
+
+.resultado-emoji {
+  font-size: 56px;
+  margin-bottom: 8px;
+}
+
+.resultado-titulo {
+  font-family: var(--fuente-titular);
+  font-size: clamp(24px, 4vw, 34px);
+  margin: 0 0 16px;
+  color: var(--azul-acento-oscuro);
+}
+
+.resultado-descripcion {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #33384a;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.resultado-empate {
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--rojo-senal);
+}
+
+.cartelito {
+  font-size: 15px;
+  color: var(--texto-atenuado);
+  margin-bottom: 32px;
+}
+
+.cta-escuela {
+  background: var(--tinta-suave);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 28px;
+}
+.cta-escuela p {
+  margin: 0 0 14px;
+  font-weight: 600;
+  color: var(--texto-claro);
+}
+
+/* ------- Responsive: celular ------- */
+@media (max-width: 480px) {
+  .contenedor { padding: 32px 16px; }
+  .tarjeta-pregunta, .tarjeta-resultado { padding: 28px 20px; }
+  .boton { width: 100%; }
+}

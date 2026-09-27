@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué tipo de periodista deportivo sos?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="contenedor">
+
+    <!-- ======================================================= -->
+    <!-- PANTALLA 1: INICIO                                       -->
+    <!-- Editá el título y la bajada acá mismo, en el HTML.       -->
+    <!-- ======================================================= -->
+    <section id="pantalla-inicio" class="pantalla activa">
+      <p class="etiqueta">Test vocacional</p>
+      <h1 class="titulo-hero">¿Qué tipo de periodista<br>deportivo sos?</h1>
+      <p class="bajada">
+        8 preguntas rápidas para descubrir si tenés más de investigador, cronista,
+        audiovisual o digital. Elegí la opción que más te representa en cada una.
+      </p>
+      <button class="boton boton-primario" id="btn-comenzar">Comenzar test</button>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- PANTALLA 2: TEST                                         -->
+    <!-- Las preguntas se insertan solas desde script.js.         -->
+    <!-- ======================================================= -->
+    <section id="pantalla-test" class="pantalla">
+      <div class="barra-progreso-wrap">
+        <div class="barra-progreso">
+          <div class="barra-progreso-relleno" id="barra-relleno"></div>
+        </div>
+        <p class="progreso-texto" id="progreso-texto">Pregunta 1 de 8</p>
+      </div>
+
+      <div class="tarjeta-pregunta">
+        <h2 class="pregunta-texto" id="pregunta-texto"></h2>
+        <div class="opciones" id="opciones-contenedor">
+          <!-- Los botones de opciones se generan dinámicamente en script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- PANTALLA 3: RESULTADO                                    -->
+    <!-- El contenido se completa desde script.js según el perfil.-->
+    <!-- ======================================================= -->
+    <section id="pantalla-resultado" class="pantalla">
+      <div class="tarjeta-resultado">
+        <p class="etiqueta">Tu resultado</p>
+        <div class="resultado-emoji" id="resultado-emoji">🔎</div>
+        <h2 class="resultado-titulo" id="resultado-titulo">Cargando...</h2>
+        <p class="resultado-descripcion" id="resultado-descripcion"></p>
+        <p class="resultado-empate" id="resultado-empate"></p>
+      </div>
+
+      <p class="cartelito" id="cartelito-final"></p>
+
+      <div class="cta-escuela">
+        <p>¿Querés conocer nuestra carrera de periodismo?</p>
+        <a href="https://www.isef11.edu.ar/" target="_blank" rel="noopener" class="boton boton-secundario">
+          Visita nuestra página web
+        </a>
+      </div>
+
+      <button class="boton boton-primario" id="btn-reiniciar">Volver a hacer el test</button>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
